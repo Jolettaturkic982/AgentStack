@@ -11,7 +11,7 @@ Documentation for **AgentStack**: MCP, plugins, ecosystem API, and examples.
 | Section | Description |
 |--------|--------------|
 | [MCP_AND_ECOSYSTEM.md](MCP_AND_ECOSYSTEM.md) | Single entry point: MCP, Plugins, Ecosystem, Examples. |
-| [MCP_SERVER_CAPABILITIES.md](MCP_SERVER_CAPABILITIES.md) | Full list of 60+ MCP tools and parameters. |
+| [MCP_SERVER_CAPABILITIES.md](MCP_SERVER_CAPABILITIES.md) | MCP index: quick start, overview, [tools reference](MCP_TOOLS.md), features and examples. |
 | [ECOSYSTEM_API_IMPLEMENTATION.md](ECOSYSTEM_API_IMPLEMENTATION.md) | Ecosystem API: data API, endpoints, usage. |
 | [plugins/](plugins/) | Plugins index (Cursor, Claude, GPT, VS Code), comparison, CONTEXT_FOR_AI, Skills guide. |
 | [examples/](examples/) | MCP usage examples: complex projects, buffs (workflows, temporary, persistent). |

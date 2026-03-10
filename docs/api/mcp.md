@@ -972,29 +972,3 @@ curl -H "X-API-Key: test_key_123" \
      https://agentstack.tech/mcp/tools/get_payment_status \
      -d '{"payment_id": "pay_test_123"}'
 ```
-
-## 🚀 Production Deployment
-
-### Рекомендации
-- Используйте HTTPS в продакшне
-- Настройте proper rate limiting
-- Включите мониторинг и алерты
-- Регулярно ротируйте API ключи
-- Настройте backup и disaster recovery
-
-### Конфигурация
-```bash
-# Production настройки
-MCP_HOST=0.0.0.0
-MCP_PORT=8100
-MCP_SSL_CERT=/path/to/cert.pem
-MCP_SSL_KEY=/path/to/key.pem
-MCP_RATE_LIMIT=1000
-MCP_LOG_LEVEL=INFO
-```
-
----
-
-**Последнее обновление**: $(date)
-**Версия MCP**: 2.0.0
-**Статус**: Production Ready

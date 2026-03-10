@@ -6,7 +6,7 @@
 
 ## MCP (Model Context Protocol)
 
-- **[MCP_SERVER_CAPABILITIES.md](MCP_SERVER_CAPABILITIES.md)** — полный список MCP tools (60+), параметры, примеры вызовов. Единый источник правды для плагинов Cursor, Claude, GPT, VS Code.
+- **[MCP_SERVER_CAPABILITIES.md](MCP_SERVER_CAPABILITIES.md)** — индекс MCP-документации: быстрый старт ([MCP_QUICKSTART](MCP_QUICKSTART.md)), обзор и API ([MCP_OVERVIEW](MCP_OVERVIEW.md)), справочник tools ([MCP_TOOLS](MCP_TOOLS.md)), особенности и примеры ([MCP_FEATURES_EXAMPLES](MCP_FEATURES_EXAMPLES.md)). 60+ tools для плагинов Cursor, Claude, GPT, VS Code.
 - **[api/mcp.md](api/mcp.md)** — конфигурация MCP, аутентификация, публичные эндпоинты, примеры для AI агентов.
 
 ---
@@ -34,6 +34,5 @@
 
 ---
 
-**Быстрые ссылки для плагинов:** [MCP_SERVER_CAPABILITIES](MCP_SERVER_CAPABILITIES.md) · [Plugins index](plugins/README.md) · [CONTEXT_FOR_AI](plugins/CONTEXT_FOR_AI.md)
+**Быстрые ссылки для плагинов:** [MCP_SERVER_CAPABILITIES](MCP_SERVER_CAPABILITIES.md) · [Plugins index](plugins/README.md) · [CONTEXT_FOR_AI](plugins/CONTEXT_FOR_AI.md).
 
-**Верификация флоу:** [ECOSYSTEM_FLOWS_VERIFICATION.md](ECOSYSTEM_FLOWS_VERIFICATION.md) — таблица соответствия документации и реализации, результаты проверок.

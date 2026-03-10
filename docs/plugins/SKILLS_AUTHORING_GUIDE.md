@@ -2,7 +2,7 @@
 
 **Version:** 0.1  
 **Date:** 2026-02-24  
-**Validation:** Каждый раздел проверен по [AGENTSTACK_PLUGIN_PHILOSOPHY.md](AGENTSTACK_PLUGIN_PHILOSOPHY.md) (раздел «Skills: валидация по PHILOSOPHY_INDEX») и [philosophy/PHILOSOPHY_INDEX.md](../philosophy/PHILOSOPHY_INDEX.md).
+**Validation:** Рекомендуемые принципы: Creation over Conflict, Decomposition, Elegant Minimalism, Time-Decomposition-Completion (см. документацию репозитория).
 
 ---
 
@@ -87,12 +87,10 @@ description: Helps with AgentStack.
 
 ## Валидация перед коммитом
 
-Перед внесением изменений в skill пройти чеклист из [AGENTSTACK_PLUGIN_PHILOSOPHY.md](AGENTSTACK_PLUGIN_PHILOSOPHY.md) (раздел «Skills: валидация по PHILOSOPHY_INDEX»):
+Перед внесением изменений в skill проверить по чек-листу:
 
 - Creation over Conflict: создаём ценность, не боремся с альтернативами.
 - Time-Decomposition-Completion: законченный модуль, нет полуготовых инструкций.
 - Decomposition: один skill — один домен.
 - Elegant Minimalism: минимум текста, ссылки вместо дублирования, SKILL.md до ~500 строк.
 - 8DNA / Time: skill 8DNA соответствует официальной архитектуре; при изменениях — версии и CHANGELOG.
-
-См. также [SKILLS_AUDIT.md](SKILLS_AUDIT.md) для текущего состояния и рекомендуемых правок.

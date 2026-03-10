@@ -23,7 +23,7 @@
 
 1. **Получить API ключ**
    - Через дашборд [agentstack.tech](https://agentstack.tech): создать проект и взять API ключ.
-   - Либо без регистрации: один запрос к MCP — `projects.create_project_anonymous` с именем проекта; в ответе будут `user_api_key`, `project_id`. См. [MCP_SERVER_CAPABILITIES.md](MCP_SERVER_CAPABILITIES.md#projectscreate_project_anonymous).
+   - Либо без регистрации: один запрос к MCP — `projects.create_project_anonymous` с именем проекта; в ответе будут `user_api_key`, `project_id`. См. [MCP_TOOLS.md](MCP_TOOLS.md) (раздел Projects Tools, `projects.create_project_anonymous`) или [MCP_QUICKSTART.md](MCP_QUICKSTART.md).
 
 2. **Читать и писать данные проекта**
    - REST:  

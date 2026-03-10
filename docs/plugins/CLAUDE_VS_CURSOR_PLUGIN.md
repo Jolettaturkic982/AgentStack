@@ -8,12 +8,12 @@
 
 ## Размещение
 
-Все плагины в каталоге **provided_plugins/** (см. [provided_plugins/README.md](../../provided_plugins/README.md)):
+Исходный код плагинов на GitHub: [cursor-plugin](https://github.com/agentstacktech/cursor-plugin), [claude-plugin](https://github.com/agentstacktech/claude-plugin), [gpt-plugin](https://github.com/agentstacktech/gpt-plugin), [vscode-plugin](https://github.com/agentstacktech/vscode-plugin).
 
-- **Cursor:** `provided_plugins/cursor-plugin/`
-- **Claude:** `provided_plugins/claude-plugin/`
-- **GPT (OpenAI):** `provided_plugins/gpt-plugin/`
-- **VS Code:** `provided_plugins/vscode-plugin/`
+- **Cursor:** cursor-plugin
+- **Claude:** claude-plugin
+- **GPT (OpenAI):** gpt-plugin
+- **VS Code:** vscode-plugin
 
 Один плагин — один артефакт (Decomposition). Общий MCP endpoint и экосистема; манифесты и конфиги различаются по платформе.
 

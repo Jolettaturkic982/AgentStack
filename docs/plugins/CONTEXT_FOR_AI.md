@@ -29,4 +29,4 @@
 ---
 
 **Version:** 0.1  
-**Source:** [AGENTSTACK_PLUGIN_PHILOSOPHY.md](AGENTSTACK_PLUGIN_PHILOSOPHY.md), plugin skills (Cursor/Claude). Update this map when MCP capabilities change.
+Обновляйте карту при изменении MCP capabilities (список tools — в [MCP_SERVER_CAPABILITIES.md](../MCP_SERVER_CAPABILITIES.md)).

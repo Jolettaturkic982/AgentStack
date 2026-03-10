@@ -18,10 +18,10 @@
 
 ---
 
-## Ecosystem API
+## Работа с данными экосистемы
 
-- **[ECOSYSTEM_API_IMPLEMENTATION.md](ECOSYSTEM_API_IMPLEMENTATION.md)** — реализация Ecosystem API: data API для проектов, структура endpoints, примеры использования. Зачем и как использовать экосистемный API.
-- **[architecture/DNA_KEY_VALUE_API.md](architecture/DNA_KEY_VALUE_API.md)** — хранилище данных (project.data, user.data), key-value API (GET/POST `/data`), работа с 8DNA.
+- **[ECOSYSTEM_API_IMPLEMENTATION.md](ECOSYSTEM_API_IMPLEMENTATION.md)** — работа с данными: существующие эндпоинты (без версий в путях), быстрый старт, пример хранения данных мобильной игры (user.data.game.progress). Данные проекта и пользователя: `/api/projects/.../data`, `/api/dna/data`, MCP.
+- **[architecture/DNA_KEY_VALUE_API.md](architecture/DNA_KEY_VALUE_API.md)** — хранилище данных (project.data, user.data), key-value API **GET/POST /api/dna/data**, работа с 8DNA.
 
 ---
 
@@ -35,3 +35,5 @@
 ---
 
 **Быстрые ссылки для плагинов:** [MCP_SERVER_CAPABILITIES](MCP_SERVER_CAPABILITIES.md) · [Plugins index](plugins/README.md) · [CONTEXT_FOR_AI](plugins/CONTEXT_FOR_AI.md)
+
+**Верификация флоу:** [ECOSYSTEM_FLOWS_VERIFICATION.md](ECOSYSTEM_FLOWS_VERIFICATION.md) — таблица соответствия документации и реализации, результаты проверок.

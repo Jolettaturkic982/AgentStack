@@ -9,12 +9,14 @@
 
 The DNA API exposes a key-value interface for built apps: keys of the form `project.data.<path>` or `user.data.<path>` map to JSON stored in 8DNA tables `data_projects_project` and `data_projects_user` respectively. This corresponds to SDK usage: `sdk.db.get(key)` and `sdk.db.set(key, value)`.
 
-## Endpoints (under DNA API prefix)
+## Endpoints
 
-| Method | Path   | Description |
-|--------|--------|-------------|
-| GET    | `/data` | Get value at key. Query: `key` (required), `project_id` (required for `project.data.*`). |
-| POST   | `/data` | Set value at key. Body: `{ "key": "...", "value": <any>, "project_id": <optional> }`. |
+Базовый путь DNA API: **`/api/dna`** (версий в путях нет).
+
+| Method | Full path   | Description |
+|--------|-------------|-------------|
+| GET    | `GET /api/dna/data` | Get value at key. Query: `key` (required), `project_id` (required for `project.data.*`). |
+| POST   | `POST /api/dna/data` | Set value at key. Body: `{ "key": "...", "value": <any>, "project_id": <optional> }`. |
 
 ## Key format
 

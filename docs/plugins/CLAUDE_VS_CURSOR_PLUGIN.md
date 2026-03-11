@@ -1,81 +1,81 @@
-# Plugins: Claude, Cursor, GPT, VS Code — Отличия и решения
+# Plugins: Claude, Cursor, GPT, VS Code — Differences and choices
 
 **Version:** 0.3  
 **Date:** 2026-02-23  
-**Context:** Плагины AgentStack для **Claude Code**, **Cursor**, **GPT (OpenAI)** и **VS Code**; согласование и философия. Индекс плагинов: [docs/plugins/README.md](README.md).
+**Context:** AgentStack plugins for **Claude Code**, **Cursor**, **GPT (OpenAI)**, and **VS Code**; alignment and philosophy. Plugin index: [docs/plugins/README.md](README.md).
 
 ---
 
-## Размещение
+## Where they live
 
-Исходный код плагинов на GitHub: [cursor-plugin](https://github.com/agentstacktech/cursor-plugin), [claude-plugin](https://github.com/agentstacktech/claude-plugin), [gpt-plugin](https://github.com/agentstacktech/gpt-plugin), [vscode-plugin](https://github.com/agentstacktech/vscode-plugin).
+Plugin source on GitHub: [cursor-plugin](https://github.com/agentstacktech/cursor-plugin), [claude-plugin](https://github.com/agentstacktech/claude-plugin), [gpt-plugin](https://github.com/agentstacktech/gpt-plugin), [vscode-plugin](https://github.com/agentstacktech/vscode-plugin).
 
 - **Cursor:** cursor-plugin
 - **Claude:** claude-plugin
 - **GPT (OpenAI):** gpt-plugin
 - **VS Code:** vscode-plugin
 
-Один плагин — один артефакт (Decomposition). Общий MCP endpoint и экосистема; манифесты и конфиги различаются по платформе.
+One plugin — one artifact (Decomposition). Shared MCP endpoint and ecosystem; manifests and configs differ by platform.
 
 ---
 
 ## GPT (OpenAI) — GPT Actions
 
-- **Модель интеграции:** не «пакет плагина», а артефакты для **GPT Actions**. Пользователь создаёт **Custom GPT** в ChatGPT и подключает OpenAPI 3.1 схему + инструкции.
-- **Манифест:** OpenAPI 3.1 схема (`provided_plugins/gpt-plugin/openapi/agentstack-mcp.yaml`) + эталонные инструкции (`GPT_INSTRUCTIONS.md`). Установка = создание Custom GPT по `GPT_QUICKSTART.md`.
-- **MCP:** тот же endpoint `https://agentstack.tech/mcp`; аутентификация — API Key в заголовке `X-API-Key` (настраивается в Custom GPT → Action → Authentication).
-- **OAuth (опционально):** для Custom GPT можно использовать OAuth2 (Authorization Code) с AgentStack как IdP:
+- **Integration model:** not a "plugin package" but artifacts for **GPT Actions**. The user creates a **Custom GPT** in ChatGPT and attaches the OpenAPI 3.1 schema + instructions.
+- **Manifest:** OpenAPI 3.1 schema (`provided_plugins/gpt-plugin/openapi/agentstack-mcp.yaml`) + reference instructions (`GPT_INSTRUCTIONS.md`). Install = create Custom GPT per `GPT_QUICKSTART.md`.
+- **MCP:** same endpoint `https://agentstack.tech/mcp`; auth — API Key in header `X-API-Key` (set in Custom GPT → Action → Authentication).
+- **OAuth (optional):** Custom GPT can use OAuth2 (Authorization Code) with AgentStack as IdP:
   - Authorization URL: `https://agentstack.tech/api/oauth2/authorize`
   - Token URL: `https://agentstack.tech/api/oauth2/token`
-- **Подробнее:** структура артефактов в `provided_plugins/gpt-plugin/ARTIFACTS.md`; быстрый старт в `provided_plugins/gpt-plugin/GPT_QUICKSTART.md`.
+- **More:** artifact layout in `provided_plugins/gpt-plugin/ARTIFACTS.md`; quick start in `provided_plugins/gpt-plugin/GPT_QUICKSTART.md`.
 
 ---
 
-## Отличия по компонентам
+## Component comparison
 
-| Компонент | Cursor | Claude Code | GPT (OpenAI) | VS Code |
+| Component | Cursor | Claude Code | GPT (OpenAI) | VS Code |
 |-----------|--------|-------------|--------------|---------|
-| **Манифест** | `.cursor-plugin/plugin.json` | `.claude-plugin/plugin.json` | OpenAPI 3.1 schema + GPT_INSTRUCTIONS.md | `package.json` + `contributes.mcpServerDefinitionProviders` |
-| **Установка** | Копирование плагина + MCP config | Установка плагина + `claude mcp add` | Создание Custom GPT, вставка схемы и инструкций | Marketplace/VSIX + один раз ввод API key |
-| **MCP config** | `mcp.json` (HTTP: `type`, `baseUrl`, `headers`) | HTTP через пользовательскую настройку (см. ниже) | API Key или OAuth в настройках Action | HTTP через расширение (авто-регистрация) |
-| **Skills** | `skills/*/SKILL.md` (8DNA, Projects, Rules Engine, Assets, RBAC, Buffs, Payments, Auth) | тот же формат | Нет аналога; контекст в инструкциях Custom GPT | Нет аналога; контекст в MCP и README |
-| **Rules** | `rules/*.mdc` (Cursor-specific) | Нет аналога; знания в Skills + ссылки на доки | Нет аналога | Нет аналога |
+| **Manifest** | `.cursor-plugin/plugin.json` | `.claude-plugin/plugin.json` | OpenAPI 3.1 schema + GPT_INSTRUCTIONS.md | `package.json` + `contributes.mcpServerDefinitionProviders` |
+| **Install** | Copy plugin + MCP config | Install plugin + `claude mcp add` | Create Custom GPT, paste schema and instructions | Marketplace/VSIX + one-time API key entry |
+| **MCP config** | `mcp.json` (HTTP: `type`, `baseUrl`, `headers`) | HTTP via user setup (see below) | API Key or OAuth in Action settings | HTTP via extension (auto-registration) |
+| **Skills** | `skills/*/SKILL.md` (8DNA, Projects, Rules Engine, Assets, RBAC, Buffs, Payments, Auth) | same format | No equivalent; context in Custom GPT instructions | No equivalent; context in MCP and README |
+| **Rules** | `rules/*.mdc` (Cursor-specific) | No equivalent; knowledge in Skills + doc links | No equivalent | No equivalent |
 
 ---
 
-## MCP: HTTP в Claude Code
+## MCP: HTTP in Claude Code
 
-- В **плагине** Claude Code (`.mcp.json`) в официальной документации описан только запуск MCP через **command** (stdio). Для **remote HTTP** серверов пользователь настраивает MCP вручную.
-- **Рекомендуемый сценарий для AgentStack:** пользователь после установки плагина выполняет один раз:
+- In the Claude Code **plugin** (`.mcp.json`) official docs only describe running MCP via **command** (stdio). For **remote HTTP** servers the user configures MCP manually.
+- **Recommended flow for AgentStack:** after installing the plugin the user runs once:
   ```bash
   claude mcp add --transport http agentstack https://agentstack.tech/mcp --header "X-API-Key: <YOUR_API_KEY>"
   ```
-  Либо настраивает MCP в UI Claude Code (если доступно) по инструкции в MCP_QUICKSTART.md.
+  Or configures MCP in Claude Code UI (if available) per MCP_QUICKSTART.md.
 
-- **Итог:** в `provided_plugins/claude-plugin/` не добавляем `.mcp.json` с HTTP (формат для HTTP в plugin bundle не зафиксирован); все шаги подключения MCP описываем в `MCP_QUICKSTART.md` и README (Elegant Minimalism: минимум шагов, один API key).
+- **Summary:** we do not add `.mcp.json` with HTTP in `provided_plugins/claude-plugin/` (HTTP format in plugin bundle is not fixed); all MCP connection steps are described in `MCP_QUICKSTART.md` and README (Elegant Minimalism: minimal steps, one API key).
 
-### Claude и OAuth
+### Claude and OAuth
 
-- Текущий рекомендованный путь для Claude Code — API key (`X-API-Key`) для MCP HTTP.
-- Если платформа Claude/каталог MCP требует OAuth, AgentStack уже предоставляет стандартные OAuth2 endpoints (`/api/oauth2/authorize`, `/api/oauth2/token`) без отдельной реализации «под Claude».
-
----
-
-## Что переиспользуется
-
-- Тексты и структура **Skills** (8DNA, Projects, Rules Engine, **Assets**, **RBAC**, **Buffs**, **Payments**, **Auth**) — копируем и при необходимости адаптируем frontmatter; заменяем «Cursor» на «Claude Code» в инструкциях.
-- **GPT:** те же MCP endpoint и API key; описание получения ключа переиспользуется из MCP_QUICKSTART; инструкции Custom GPT ссылаются на MCP_SERVER_CAPABILITIES.
-- Production URL MCP: `https://agentstack.tech/mcp`.
-- Документация: ссылки на MCP_SERVER_CAPABILITIES, 8DNA, ecosystem без дублирования.
+- Current recommended path for Claude Code is API key (`X-API-Key`) for MCP HTTP.
+- If the Claude platform/MCP catalog requires OAuth, AgentStack already provides standard OAuth2 endpoints (`/api/oauth2/authorize`, `/api/oauth2/token`) without a separate "for Claude" implementation.
 
 ---
 
-## Skills: синхронизация Cursor и Claude
+## What is reused
 
-- **Источник правды:** правки вносятся в `provided_plugins/cursor-plugin/skills/`. При релизе или обновлении skills копировать содержимое в `provided_plugins/claude-plugin/skills/` (каталоги: agentstack-8dna, agentstack-projects, agentstack-rules-engine, agentstack-assets, agentstack-rbac, agentstack-buffs, agentstack-payments, agentstack-auth).
-- **Адаптация для Claude:** в скопированных SKILL.md заменить в тексте «Cursor» на «Claude Code» (например: «add MCP in Cursor» → «add MCP in Claude Code»). Frontmatter (name, description) не менять.
-- **Ссылки в Claude-варианте:** References на MCP_QUICKSTART и README указывают на артефакты в корне claude-plugin (MCP_QUICKSTART.md, README.md — в том же плагине). Ссылки на репо (MCP_SERVER_CAPABILITIES, philosophy) остаются общими.
-- **Версионирование:** при изменении skills обновлять CHANGELOG в обоих плагинах (Time Processes Philosophy). См. также [SKILLS_AUTHORING_GUIDE.md](SKILLS_AUTHORING_GUIDE.md).
+- **Skills** text and structure (8DNA, Projects, Rules Engine, **Assets**, **RBAC**, **Buffs**, **Payments**, **Auth**) — we copy and adapt frontmatter if needed; replace "Cursor" with "Claude Code" in instructions.
+- **GPT:** same MCP endpoint and API key; key acquisition text reused from MCP_QUICKSTART; Custom GPT instructions reference MCP_SERVER_CAPABILITIES.
+- Production MCP URL: `https://agentstack.tech/mcp`.
+- Documentation: links to MCP_SERVER_CAPABILITIES, 8DNA, ecosystem without duplication.
+
+---
+
+## Skills: syncing Cursor and Claude
+
+- **Source of truth:** edits go in `provided_plugins/cursor-plugin/skills/`. On release or skill update, copy content to `provided_plugins/claude-plugin/skills/` (folders: agentstack-8dna, agentstack-projects, agentstack-rules-engine, agentstack-assets, agentstack-rbac, agentstack-buffs, agentstack-payments, agentstack-auth).
+- **Claude adaptation:** in copied SKILL.md replace "Cursor" with "Claude Code" in the body (e.g. "add MCP in Cursor" → "add MCP in Claude Code"). Frontmatter (name, description) unchanged.
+- **Links in Claude version:** References to MCP_QUICKSTART and README point to artifacts in claude-plugin root (MCP_QUICKSTART.md, README.md — same plugin). Repo links (MCP_SERVER_CAPABILITIES, philosophy) stay shared.
+- **Versioning:** when changing skills, update CHANGELOG in both plugins (Time Processes Philosophy). See also [SKILLS_AUTHORING_GUIDE.md](SKILLS_AUTHORING_GUIDE.md).
 
 ---
 

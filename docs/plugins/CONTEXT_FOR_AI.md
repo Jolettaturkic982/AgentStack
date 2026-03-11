@@ -29,4 +29,4 @@
 ---
 
 **Version:** 0.1  
-Обновляйте карту при изменении MCP capabilities (список tools — в [MCP_SERVER_CAPABILITIES.md](../MCP_SERVER_CAPABILITIES.md)).
+Update the map when MCP capabilities change (tool list is in [MCP_SERVER_CAPABILITIES.md](../MCP_SERVER_CAPABILITIES.md)).
